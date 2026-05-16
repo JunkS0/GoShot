@@ -1,0 +1,322 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #120f10;
+  color: #f6efe5;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+#game,
+#scene {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+
+#hud {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.topbar {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: translateX(-50%);
+  font-weight: 800;
+}
+
+.brand,
+#levelBadge,
+#siteBadge,
+#intelBadge,
+#netBadge {
+  min-width: 70px;
+  padding: 8px 11px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(18, 15, 16, 0.74);
+  text-align: center;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.brand {
+  min-width: 118px;
+  color: #ffbe70;
+}
+
+#intelBadge.revealed,
+#netBadge.online {
+  color: #211616;
+  background: #ffbe70;
+}
+
+#netBadge.offline {
+  color: #ffd0c6;
+  border-color: rgba(255, 117, 92, 0.45);
+}
+
+.crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 26px;
+  height: 26px;
+  transform: translate(-50%, -50%);
+}
+
+.crosshair::before,
+.crosshair::after {
+  position: absolute;
+  content: "";
+  background: rgba(255, 245, 226, 0.95);
+  box-shadow: 0 0 9px rgba(255, 190, 112, 0.55);
+}
+
+.crosshair::before {
+  top: 12px;
+  left: 0;
+  width: 26px;
+  height: 2px;
+}
+
+.crosshair::after {
+  top: 0;
+  left: 12px;
+  width: 2px;
+  height: 26px;
+}
+
+.panel {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(18, 15, 16, 0.78);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
+}
+
+.weapon-panel {
+  left: 18px;
+  bottom: 98px;
+  width: min(350px, calc(100vw - 36px));
+  padding: 14px;
+}
+
+#weaponName {
+  font-size: 22px;
+  font-weight: 900;
+  color: #ffbe70;
+}
+
+#weaponStats,
+#ammoLine {
+  margin-top: 6px;
+  color: #ded2c2;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.status-panel {
+  right: 18px;
+  bottom: 98px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(64px, 1fr));
+  gap: 12px;
+  padding: 12px 14px;
+  text-align: center;
+}
+
+.status-panel div {
+  color: #cabeb1;
+  font-size: 12px;
+}
+
+.status-panel strong {
+  display: block;
+  color: #fff3d8;
+  font-size: 18px;
+}
+
+.killfeed {
+  right: 18px;
+  top: 72px;
+  width: min(390px, calc(100vw - 36px));
+  max-height: 188px;
+  padding: 10px 12px;
+  overflow: hidden;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.weapon-row {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(72px, 1fr));
+  gap: 8px;
+  width: min(700px, calc(100vw - 36px));
+  transform: translateX(-50%);
+}
+
+.weapon-card {
+  min-height: 56px;
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(18, 15, 16, 0.68);
+  text-align: center;
+}
+
+.weapon-card.active {
+  border-color: #ffbe70;
+  background: rgba(255, 190, 112, 0.22);
+}
+
+.weapon-card b {
+  display: block;
+  color: #fff3d8;
+  font-size: 14px;
+}
+
+.weapon-card span {
+  display: block;
+  margin-top: 2px;
+  color: #c8bdae;
+  font-size: 11px;
+}
+
+#startButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(438px, calc(100vw - 44px));
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
+  background: rgba(18, 15, 16, 0.9);
+  color: #fff3d8;
+  cursor: pointer;
+  pointer-events: auto;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(14px);
+}
+
+#startButton span {
+  display: block;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+#startButton small {
+  display: block;
+  margin-top: 10px;
+  color: #d4c7b8;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.server-panel {
+  left: 18px;
+  top: 72px;
+  width: min(390px, calc(100vw - 36px));
+  padding: 12px;
+  pointer-events: auto;
+}
+
+.server-panel label {
+  display: block;
+  margin-bottom: 8px;
+  color: #ffbe70;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.server-row {
+  display: grid;
+  grid-template-columns: 1fr 72px;
+  gap: 8px;
+}
+
+.server-row input,
+.server-row button {
+  min-width: 0;
+  height: 36px;
+  border-radius: 8px;
+  font: inherit;
+}
+
+.server-row input {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff3d8;
+  padding: 0 10px;
+}
+
+.server-row button {
+  border: 0;
+  background: #ffbe70;
+  color: #211616;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    left: 12px;
+    right: 12px;
+    width: calc(100vw - 24px);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    transform: none;
+  }
+
+  .brand,
+  #levelBadge,
+  #siteBadge,
+  #intelBadge,
+  #netBadge {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .server-panel {
+    top: 116px;
+  }
+
+  .weapon-row {
+    grid-template-columns: repeat(3, 1fr);
+    bottom: 14px;
+  }
+
+  .status-panel {
+    left: 18px;
+    right: 18px;
+    width: calc(100vw - 36px);
+    bottom: 292px;
+  }
+
+  .weapon-panel {
+    bottom: 154px;
+  }
+
+  .killfeed {
+    top: 196px;
+    max-height: 76px;
+  }
+}
