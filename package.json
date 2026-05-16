@@ -1,0 +1,17 @@
+{
+  "name": "kotgun-tactical-game",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "yarn@1.22.22",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server/server.js",
+    "start:server": "node server/server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "ws": "^8.17.1"
+  }
+}

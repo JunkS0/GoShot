@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>고총 전술전</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="game">
+      <canvas id="scene"></canvas>
+
+      <div id="hud">
+        <div class="topbar">
+          <div class="brand">고총 전술전</div>
+          <div id="levelBadge">지상</div>
+          <div id="siteBadge">중앙</div>
+          <div id="intelBadge">타층 적 표시</div>
+          <div id="netBadge">혼자 연습</div>
+        </div>
+
+        <div class="crosshair" aria-hidden="true"></div>
+
+        <div class="panel weapon-panel">
+          <div id="weaponName">고총 · 권총</div>
+          <div id="weaponStats"></div>
+          <div id="ammoLine"></div>
+        </div>
+
+        <div class="panel status-panel">
+          <div>체력 <strong id="hp">150</strong></div>
+          <div>갑옷 <strong id="armor">큰갑옷</strong></div>
+          <div>속도 <strong id="speed">보통</strong></div>
+        </div>
+
+        <div class="panel killfeed" id="log"></div>
+
+        <div class="weapon-row" id="weaponRow"></div>
+
+        <button id="startButton" type="button">
+          <span>클릭해서 시작</span>
+          <small>WASD 이동 · 마우스 조준 · 좌클릭 사격 · 우클릭 조준/강공격 · E 엘리베이터 · 1-6 무기</small>
+        </button>
+
+        <div class="panel server-panel">
+          <label for="serverUrl">멀티 서버</label>
+          <div class="server-row">
+            <input id="serverUrl" type="text" placeholder="wss://내-render-서버.onrender.com" />
+            <button id="connectButton" type="button">연결</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
