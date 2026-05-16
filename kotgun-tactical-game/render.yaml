@@ -1,7 +1,0 @@
-services:
-  - type: web
-    name: kotgun-multiplayer-server
-    env: node
-    plan: free
-    buildCommand: yarn install
-    startCommand: yarn start
